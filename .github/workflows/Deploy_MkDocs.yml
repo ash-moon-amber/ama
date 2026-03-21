@@ -48,7 +48,7 @@ jobs:
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-      # 2. mkdocs.yml を生成（実ファイル名に合わせてパスを固定）
+      # 2. mkdocs.yml を生成（post_dir を追加）
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
@@ -78,12 +78,13 @@ jobs:
 
           nav:
             - ホーム: index.md
-            - ブログ: blog/top.md  # top.md を明示的に指定
+            - ブログ: blog/top.md
             - GitHub: https://github.com/ash-moon-amber/ama
 
           plugins:
             - blog:
                 blog_dir: blog
+                post_dir: .
           docs_dir: src
           site_dir: site
           EOF
