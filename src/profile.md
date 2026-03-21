@@ -1,4 +1,4 @@
-# Profile
+# Haitsuki Kohaku - Profile
 
 
 ## Brain

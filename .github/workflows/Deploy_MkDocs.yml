@@ -79,8 +79,8 @@ jobs:
               - toc.integrate
 
           nav:
-            - ASH MOON AMBER: index.md
-            - Profiles: index.md
+            - AMA: index.md
+            - Profile: profile.md
 
           plugins:
             - blog:
