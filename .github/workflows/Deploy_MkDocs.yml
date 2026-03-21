@@ -1,0 +1,70 @@
+name: Deploy MkDocs to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install "mkdocs-material[blog]"
+          pip install mkdocs-static-i18n
+
+      # 1. src ディレクトリをソースとして指定してビルド
+      # -d site で出力先を明示（念のため）
+      - name: Build MkDocs
+        run: mkdocs build -d site
+
+      # 2. 公開用フォルダ(public)の整理
+      - name: Prepare Public Directory
+        run: |
+          mkdir -p public
+          # MkDocsのビルド成果物をコピー
+          cp -r site/* public/
+          # app フォルダをそのまま配置
+          if [ -d "app" ]; then
+            cp -r app public/
+          fi
+          # _root (設定ファイル等) をルートに展開
+          if [ -d "_root" ]; then
+            cp -r _root/.* public/ 2>/dev/null || cp -r _root/* public/
+          fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # 3. GitHub Pages へのアップロード
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './public'
+
+      # 4. デプロイ
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
