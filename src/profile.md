@@ -1,5 +1,13 @@
 # Haitsuki Kohaku - Profile
 
+## Novels
+  - [小説家になろう［ 灰月 琥珀 ］](https://mypage.syosetu.com/2164035/)
+  - [カクヨム［ 灰月 琥珀 ］](https://kakuyomu.jp/users/ash_moon_amber)
+  - [アルファポリス［ 灰月 琥珀 ］](https://www.alphapolis.co.jp/author/detail/280742528)
+  - [ツギクル［ 灰月 琥珀 ］](https://www.tugikuru.jp/author?id=56736)
+  - [ノベマ！［ 灰月 琥珀 ］](https://novema.jp/member/n1396292)
+  - [Tails［ 灰月 琥珀 ］](https://tales.note.com/ash_moon_amber)
+
 
 ## Brain
 
@@ -34,13 +42,6 @@
   7. ※総合33点以上でASDの可能性
 
 
-## Novels
-  - [小説家になろう［ 灰月 琥珀 ］](https://mypage.syosetu.com/2164035/)
-  - [カクヨム［ 灰月 琥珀 ］](https://kakuyomu.jp/users/ash_moon_amber)
-  - [アルファポリス［ 灰月 琥珀 ］](https://www.alphapolis.co.jp/author/detail/280742528)
-  - [ツギクル［ 灰月 琥珀 ］](https://www.tugikuru.jp/author?id=56736)
-  - [ノベマ！［ 灰月 琥珀 ］](https://novema.jp/member/n1396292)
-  - [Tails［ 灰月 琥珀 ］](https://tales.note.com/ash_moon_amber)
 
 ## Social Account
   - [ZENN ［ 灰月 琥珀 ］](https://zenn.dev/ash_moon_amber)
