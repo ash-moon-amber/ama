@@ -48,7 +48,7 @@ jobs:
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-      # 2. mkdocs.yml を生成（navにindexを戻しつつブログ一覧化）
+      # 2. mkdocs.yml を生成（プラグインの標準仕様に完全準拠）
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
@@ -83,8 +83,7 @@ jobs:
           plugins:
             - blog:
                 blog_dir: .
-                blog_index: index
-                post_dir: .
+                post_dir: posts
                 draft_if_future: false
           docs_dir: src
           site_dir: site
