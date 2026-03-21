@@ -48,7 +48,7 @@ jobs:
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-      # 2. mkdocs.yml を生成（日本語・ダークモード・ブログ専用）
+# 2. mkdocs.yml を生成（インデントを厳密に修正）
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
@@ -71,10 +71,16 @@ jobs:
                 toggle:
                   icon: material/brightness-7
                   name: ライトモード
+            features:
+              - navigation.tabs
+              - navigation.sections
+              - toc.integrate
+
           nav:
             - ホーム: index.md
             - ブログ: blog/top.md
-            - GitHub: https://github.com/ash-moon-amber/ama         
+            - GitHub: https://github.com/ash-moon-amber/ama
+
           plugins:
             - blog:
                 blog_dir: blog
