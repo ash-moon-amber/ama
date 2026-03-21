@@ -78,8 +78,8 @@ jobs:
 
           nav:
             - ホーム: index.md
-            - GitHub: https://github.com/ash-moon-amber/ama
             - 過去の投稿: archive.md
+            - GitHub: https://github.com/ash-moon-amber/ama
  
           plugins:
             - blog:
