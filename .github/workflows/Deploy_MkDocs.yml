@@ -48,7 +48,7 @@ jobs:
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-      # 2. mkdocs.yml を生成（トップページをブログ一覧化）
+      # 2. mkdocs.yml を生成（navにindexを戻しつつブログ一覧化）
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
@@ -76,18 +76,16 @@ jobs:
               - navigation.sections
               - toc.integrate
 
-          # nav から index.md を外すことで、ブログプラグインに制御を渡す
           nav:
+            - ホーム: index.md
             - GitHub: https://github.com/ash-moon-amber/ama
 
           plugins:
             - blog:
                 blog_dir: .
-                blog_index: index  # index.md を一覧ページにする
-                post_dir: .       # 階層を問わず md を探す
+                blog_index: index
+                post_dir: .
                 draft_if_future: false
-                pagination: true
-                pagination_per_page: 10
           docs_dir: src
           site_dir: site
           EOF
