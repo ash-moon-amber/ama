@@ -1,4 +1,3 @@
 # ama
-Ash Moon Amber
+- [Ash Moon Amber](https://ash-moon-amber.github.io/ama/)
 
-Hello!!
