@@ -48,7 +48,7 @@ jobs:
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-      # 2. mkdocs.yml を生成（blog_index を明示的に指定）
+      # 2. mkdocs.yml を生成（ディレクトリ構成に最適化）
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
@@ -78,15 +78,16 @@ jobs:
 
           nav:
             - ホーム: index.md
-            - ブログ: blog/top.md
+            - ブログ: blog_index.md  # 記事一覧用のファイルを指定（後述）
             - GitHub: https://github.com/ash-moon-amber/ama
 
           plugins:
             - blog:
-                blog_dir: blog
-                # blog_dir(blog/) 内のどのファイルを一覧ページにするか指定
-                blog_index: top
-                post_dir: .
+                # サイトルート(src/)全体をブログのスキャン対象にする
+                blog_dir: .
+                # 一覧ページとして使うファイル名を指定
+                blog_index: blog_index
+                # 未来日付の投稿も許容（タイムゾーン問題対策）
                 draft_if_future: false
           docs_dir: src
           site_dir: site
