@@ -48,11 +48,13 @@ jobs:
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-      # 2. mkdocs.yml を生成（プラグインの標準仕様に完全準拠）
+      # 2. mkdocs.yml を生成（GitHubリンクを標準位置へ移動）
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
           site_name: 灰月琥珀 - Ash Moon Amber
+          repo_name: GitHub
+          repo_url: https://github.com/ash-moon-amber/ama
           theme:
             name: material
             language: ja
@@ -77,10 +79,8 @@ jobs:
               - toc.integrate
 
           nav:
-            - ホーム: index.md
-            - 過去の投稿: archive.md
-            - GitHub: https://github.com/ash-moon-amber/ama
- 
+            - ASH MOON AMBER: index.md
+
           plugins:
             - blog:
                 blog_dir: .
