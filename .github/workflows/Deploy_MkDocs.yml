@@ -48,7 +48,7 @@ jobs:
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-      # 2. mkdocs.yml を生成（post_dir を追加）
+      # 2. mkdocs.yml を生成（未来日付除外の無効化とパススキャン安定化）
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
@@ -85,6 +85,7 @@ jobs:
             - blog:
                 blog_dir: blog
                 post_dir: .
+                draft_if_future: false
           docs_dir: src
           site_dir: site
           EOF
