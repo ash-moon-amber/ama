@@ -80,6 +80,7 @@ jobs:
 
           nav:
             - ASH MOON AMBER: index.md
+            - Profiles: index.md
 
           plugins:
             - blog:
