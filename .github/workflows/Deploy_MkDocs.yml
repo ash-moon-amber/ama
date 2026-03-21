@@ -52,7 +52,7 @@ jobs:
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
-          site_name: 技術ブログ
+          site_name: 灰月琥珀 - Ash Moon Amber
           theme:
             name: material
             language: ja
@@ -71,12 +71,14 @@ jobs:
                 toggle:
                   icon: material/brightness-7
                   name: ライトモード
-            features:
-              - navigation.tabs
-              - navigation.sections
-              - toc.integrate
+          nav:
+            - ホーム: index.md
+            - ブログ: blog/index.md
+            - GitHub: https://github.com/ash-moon-amber/ama         
           plugins:
-            - blog
+            - blog:
+                blog_dir: blog
+                post_dir: blog
           docs_dir: src
           site_dir: site
           EOF
