@@ -48,7 +48,7 @@ jobs:
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-# 2. mkdocs.yml を生成（インデントを厳密に修正）
+      # 2. mkdocs.yml を生成（パス指定をより堅牢に修正）
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
@@ -78,7 +78,7 @@ jobs:
 
           nav:
             - ホーム: index.md
-            - ブログ: blog/top.md
+            - ブログ: blog/   # top.md への直接指定ではなくディレクトリ指定に変更
             - GitHub: https://github.com/ash-moon-amber/ama
 
           plugins:
