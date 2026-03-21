@@ -77,8 +77,7 @@ jobs:
               - toc.integrate
 
           nav:
-            - ホーム: index.md
-            - ブログ: blog_index.md  # 記事一覧用のファイルを指定（後述）
+            - ホーム: index.md  
             - GitHub: https://github.com/ash-moon-amber/ama
 
           plugins:
@@ -86,7 +85,7 @@ jobs:
                 # サイトルート(src/)全体をブログのスキャン対象にする
                 blog_dir: .
                 # 一覧ページとして使うファイル名を指定
-                blog_index: blog_index
+                blog_index: index
                 # 未来日付の投稿も許容（タイムゾーン問題対策）
                 draft_if_future: false
           docs_dir: src
