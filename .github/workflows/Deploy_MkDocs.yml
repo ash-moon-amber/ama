@@ -6,7 +6,7 @@ on:
       - main
   workflow_dispatch:
 
-# Node.js 20 の警告を消し、Node.js 24 で実行するための設定
+# Node.js 20 警告対策と実行環境の固定
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -36,22 +36,23 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pip install mkdocs-material
           pip install "mkdocs-material[blog]"
-          pip install mkdocs-static-i18n
 
-      # 1. srcディレクトリがない、または空の場合にサンプルを作成（ビルドエラー回避）
+      # 1. srcディレクトリの存在保証（空だとビルドエラーになるため）
       - name: Ensure src directory exists
         run: |
           mkdir -p src
           if [ ! -f "src/index.md" ]; then
-            echo "# Welcome to My Blog" > src/index.md
+            echo "# ホーム" > src/index.md
+            echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-      # 2. mkdocs.yml を生成（インデントを厳密に修正）
+      # 2. mkdocs.yml を生成（日本語・ダークモード・ブログ専用）
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
-          site_name: My Technical Blog
+          site_name: 技術ブログ
           theme:
             name: material
             language: ja
@@ -62,23 +63,20 @@ jobs:
                 accent: indigo
                 toggle:
                   icon: material/brightness-4
-                  name: Switch to light mode
+                  name: ダークモード
               - media: "(prefers-color-scheme: light)"
                 scheme: default
                 primary: indigo
                 accent: indigo
                 toggle:
                   icon: material/brightness-7
-                  name: Switch to dark mode
+                  name: ライトモード
             features:
               - navigation.tabs
               - navigation.sections
-              - navigation.expand
               - toc.integrate
           plugins:
             - blog
-            - i18n:
-                default_language: ja
           docs_dir: src
           site_dir: site
           EOF
