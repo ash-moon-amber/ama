@@ -1,6 +1,4 @@
 
-# ASH MOON AMBER
+# A.M.A
 
-AMA
-
-- [GitHub Repo](https://github.com/ash-moon-amber/ama)
+私の最大の望みは平穏です。自分がきっかけで大きな争いやトラブルが生まれることが最も苦痛かもしれません。調和と平和こそが真の喜びです。
