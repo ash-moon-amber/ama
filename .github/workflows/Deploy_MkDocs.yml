@@ -1,4 +1,4 @@
-name: Deploy MkDocs to GitHub Pages
+name: Deploy MkDocs Blog to GitHub Pages
 
 on:
   push:
@@ -35,36 +35,67 @@ jobs:
           pip install "mkdocs-material[blog]"
           pip install mkdocs-static-i18n
 
-      # 1. src ディレクトリをソースとして指定してビルド
-      # -d site で出力先を明示（念のため）
-      - name: Build MkDocs
-        run: mkdocs build -d site
+      # 1. mkdocs.yml がない場合、ここでダークモードとブログ設定を自動生成
+      - name: Create mkdocs.yml dynamically
+        run: |
+          cat <<EOF > mkdocs.yml
+          site_name: My Technical Blog
+          theme:
+            name: material
+            language: ja
+            palette:
+              - media: "(prefers-color-scheme: dark)"
+                scheme: slate
+                primary: black
+                accent: indigo
+                toggle:
+                  icon: material/brightness-4
+                  name: Switch to light mode
+              - media: "(prefers-color-scheme: light)"
+                scheme: default
+                primary: indigo
+                accent: indigo
+                toggle:
+                  icon: material/brightness-7
+                  name: Switch to dark mode
+            features:
+              - navigation.tabs
+              - navigation.sections
+              - navigation.expand
+              - toc.integrate
+          plugins:
+            - blog
+            - i18n:
+                default_language: ja
+          docs_dir: src
+          site_dir: site
+          EOF
 
-      # 2. 公開用フォルダ(public)の整理
+      # 2. ビルド実行
+      - name: Build MkDocs
+        run: mkdocs build
+
+      # 3. 公開用フォルダ (public) の集約
       - name: Prepare Public Directory
         run: |
           mkdir -p public
-          # MkDocsのビルド成果物をコピー
-          cp -r site/* public/
-          # app フォルダをそのまま配置
-          if [ -d "app" ]; then
-            cp -r app public/
-          fi
-          # _root (設定ファイル等) をルートに展開
+          # MkDocs 成果物
+          [ -d "site" ] && cp -r site/* public/
+          # app フォルダがあればコピー
+          [ -d "app" ] && cp -r app public/
+          # _root 内の設定ファイルをルートに展開
           if [ -d "_root" ]; then
-            cp -r _root/.* public/ 2>/dev/null || cp -r _root/* public/
+            cp -r _root/.* public/ 2>/dev/null || cp -r _root/* public/ 2>/dev/null || true
           fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # 3. GitHub Pages へのアップロード
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './public'
 
-      # 4. デプロイ
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
