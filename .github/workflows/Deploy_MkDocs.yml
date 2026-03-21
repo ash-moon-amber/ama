@@ -48,7 +48,7 @@ jobs:
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-      # 2. mkdocs.yml を生成（未来日付除外の無効化とパススキャン安定化）
+      # 2. mkdocs.yml を生成（blog_index を明示的に指定）
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
@@ -84,6 +84,8 @@ jobs:
           plugins:
             - blog:
                 blog_dir: blog
+                # blog_dir(blog/) 内のどのファイルを一覧ページにするか指定
+                blog_index: top
                 post_dir: .
                 draft_if_future: false
           docs_dir: src
