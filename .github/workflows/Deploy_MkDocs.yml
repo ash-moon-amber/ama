@@ -6,6 +6,10 @@ on:
       - main
   workflow_dispatch:
 
+# Node.js 20 の警告を消し、Node.js 24 で実行するための設定
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: read
   pages: write
@@ -26,7 +30,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Python
-        # v5 に上げることで Node.js 20 の警告を消します
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
@@ -36,18 +39,18 @@ jobs:
           pip install "mkdocs-material[blog]"
           pip install mkdocs-static-i18n
 
-      # 1. 実行前に src フォルダがなければ作成する（ビルドエラー防止）
+      # 1. srcディレクトリがない、または空の場合にサンプルを作成（ビルドエラー回避）
       - name: Ensure src directory exists
         run: |
-          if [ ! -d "src" ]; then
-            mkdir -p src
-            echo "# Welcome" > src/index.md
+          mkdir -p src
+          if [ ! -f "src/index.md" ]; then
+            echo "# Welcome to My Blog" > src/index.md
           fi
 
-      # 2. mkdocs.yml を動的に生成
-      - name: Create mkdocs.yml dynamically
+      # 2. mkdocs.yml を生成（インデントを厳密に修正）
+      - name: Create mkdocs.yml
         run: |
-          cat <<EOF > mkdocs.yml
+          cat <<'EOF' > mkdocs.yml
           site_name: My Technical Blog
           theme:
             name: material
@@ -84,7 +87,7 @@ jobs:
       - name: Build MkDocs
         run: mkdocs build
 
-      # 4. 公開用フォルダ (public) の集約
+      # 4. 公開ディレクトリ(public)の整理
       - name: Prepare Public Directory
         run: |
           mkdir -p public
