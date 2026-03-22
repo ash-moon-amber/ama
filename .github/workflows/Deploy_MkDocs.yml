@@ -48,7 +48,7 @@ jobs:
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-      # 2. mkdocs.yml を生成（GitHubリンクを標準位置へ移動）
+      # 2. mkdocs.yml を生成（markdown_extensions を追加）
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
@@ -77,6 +77,10 @@ jobs:
               - navigation.tabs
               - navigation.sections
               - toc.integrate
+
+          # Markdownの改行をbrタグに変換する設定
+          markdown_extensions:
+            - nl2br
 
           nav:
             - Blog: index.md
