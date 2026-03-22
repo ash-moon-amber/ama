@@ -79,7 +79,7 @@ jobs:
               - toc.integrate
 
           nav:
-            - AMA_Blog: index.md
+            - Blog: index.md
             - Profile: profile.md
 
           plugins:
