@@ -51,6 +51,11 @@ jobs:
           
           # extra.css をランナー上で物理的に生成
           cat <<'EOF' > src/stylesheets/extra.css
+          /* 共通設定: すべてのリンクを太字にする */
+          .md-typeset a {
+              font-weight: bold !important;
+          }
+
           /* ダークモード (slate): #e0e0e0 (RGB: 224, 224, 224) */
           [data-md-color-scheme="slate"] {
               --md-typeset-a-color: #e0e0e0 !important;
