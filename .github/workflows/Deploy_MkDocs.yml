@@ -48,7 +48,7 @@ jobs:
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-      # 2. mkdocs.yml を生成
+      # 2. mkdocs.yml を生成（トップページのサイドバーを最適化する構成）
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
@@ -77,18 +77,18 @@ jobs:
                   name: ライトモード
             features:
               - navigation.tabs
-              - navigation.indexes
+              - navigation.indexes   # ★トップページの冗長な表示を消す必須機能
               - navigation.sections
               - toc.integrate
 
           markdown_extensions:
             - nl2br
 
-          # navに Tags を追加します
+          # ★ここが重要：index.md には「名前（キー）」をつけずに置きます
           nav:
             - Blog:
-                - index.md   # キー（ホーム:）を書かずに直接指定
-                - tags.md    # 同上
+                - index.md
+                - Tags: tags.md
             - Profile: profile.md
 
           plugins:
@@ -99,7 +99,6 @@ jobs:
                 archive_url_date_format: yyyy/MM
                 archive_date_format: yyyy年MM月
             - search
-            # tagsプラグインに集約先ファイルを指定します
             - tags:
                 tags_file: tags.md
 
