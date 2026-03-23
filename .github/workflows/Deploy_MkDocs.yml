@@ -51,17 +51,18 @@ jobs:
           
           # extra.css をランナー上で物理的に生成
           cat <<'EOF' > src/stylesheets/extra.css
+          /* ダークモード (slate): #e0e0e0 (RGB: 224, 224, 224) */
           [data-md-color-scheme="slate"] {
-              --md-typeset-a-color: #9e9e9e !important;
-              --md-accent-fg-color: #9e9e9e !important;
+              --md-typeset-a-color: #e0e0e0 !important;
+              --md-accent-fg-color: #e0e0e0 !important;
+              --md-accent-fg-color--transparent: rgba(224, 224, 224, 0.1) !important;
           }
+
+          /* ライトモード (default): #212121 (RGB: 33, 33, 33) */
           [data-md-color-scheme="default"] {
-              --md-typeset-a-color: #757575 !important;
-              --md-accent-fg-color: #757575 !important;
-          }
-          :root {
-              --md-accent-fg-color: #9e9e9e !important;
-              --md-accent-fg-color--transparent: rgba(158, 158, 158, 0.1) !important;
+              --md-typeset-a-color: #212121 !important;
+              --md-accent-fg-color: #212121 !important;
+              --md-accent-fg-color--transparent: rgba(33, 33, 33, 0.1) !important;
           }
           EOF
 
