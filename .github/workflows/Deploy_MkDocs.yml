@@ -225,6 +225,7 @@ jobs:
                 draft_if_future: false
                 post_url_format: "{date}/{file}.html"
                 archive_url_date_format: yyyy/MM
+                archive_date_format: yyyy年MM月
             - search
             - tags:
                 tags_file: tags.md
