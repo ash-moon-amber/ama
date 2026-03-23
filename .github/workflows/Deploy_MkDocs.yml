@@ -39,7 +39,7 @@ jobs:
           pip install "mkdocs-material[blog]"
           pip install mkdocs-rss-plugin
 
-      # 1. 物理ディレクトリの存在保証とCSS生成
+      # 1. 物理ディレクトリの存在保証・404ページとCSSの生成
       - name: Ensure src directory and generate CSS
         run: |
           mkdir -p src/stylesheets
@@ -48,6 +48,12 @@ jobs:
           
           if [ ! -f "src/index.md" ]; then
             echo "# ホーム" > src/index.md
+          fi
+          
+          # ★ 404.md を生成（ビルドエラーの根本原因を排除）
+          if [ ! -f "src/404.md" ]; then
+            echo "# 404 Not Found" > src/404.md
+            echo "お探しのページは見つかりませんでした。" >> src/404.md
           fi
           
           cat <<'EOF' > src/stylesheets/extra.css
@@ -97,7 +103,7 @@ jobs:
           }
           EOF
 
-      # 2. OGP用のカスタムテンプレートを生成（絶対パスを強制注入）
+      # 2. OGP用のカスタムテンプレートを生成（404.mdがあるためシンプルな構文で記述可能）
       - name: Create overrides for OGP
         run: |
           mkdir -p overrides
