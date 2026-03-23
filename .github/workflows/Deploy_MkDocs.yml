@@ -65,8 +65,8 @@ jobs:
             palette:
               - media: "(prefers-color-scheme: dark)"
                 scheme: slate
-                primary: grey   # ★リンクやアクティブ色（whiteかgreyを指定）
-                accent: white    # ★ホバー時の色
+                primary: black   # ★リンクやアクティブ色（whiteかgreyを指定）
+                accent: grey    # ★ホバー時の色
                 toggle:
                   icon: material/brightness-4
                   name: ダークモード
