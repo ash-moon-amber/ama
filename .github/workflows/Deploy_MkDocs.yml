@@ -40,7 +40,7 @@ jobs:
           pip install "mkdocs-material[blog]"
           pip install mkdocs-rss-plugin
 
-      # 1. 物理ディレクトリの存在保証（ロゴや画像を見失わないようにする）
+      # 1. 物理ディレクトリの存在保証
       - name: Ensure src directory and generate CSS
         run: |
           mkdir -p src/stylesheets
@@ -65,7 +65,7 @@ jobs:
           }
           EOF
 
-      # 2. mkdocs.yml を生成
+      # 2. mkdocs.yml を生成（OGP設定を統合）
       - name: Create mkdocs.yml
         run: |
           TS=$(date +'%Y%m%d%H%M%S')
@@ -104,6 +104,10 @@ jobs:
               - toc.integrate
               - content.code.copy
 
+          # ★ OGP用：SNSにURLを貼った時の共通画像設定 1200 x 630
+          extra:
+            og_image: assets/og-image.png
+
           markdown_extensions:
             - nl2br
             - pymdownx.highlight:
@@ -141,6 +145,11 @@ jobs:
                 match_path: posts/.*
                 date_from_meta:
                   as_creation: date
+            # ★ プレビュー画像を自動構成するためのプラグイン
+            - social:
+                cards: true
+                cards_layout_options:
+                  background_color: "#212121"
 
           docs_dir: src
           site_dir: site
@@ -158,7 +167,7 @@ jobs:
           mkdir -p public
           [ -d "site" ] && cp -r site/* public/
           
-          # 物理的なディレクトリの強制コピー（404対策）
+          # 画像類の物理コピー
           [ -d "src/img" ] && cp -r src/img public/ || true
           [ -d "src/assets" ] && cp -r src/assets public/ || true
           [ -d "app" ] && cp -r app public/ || true
