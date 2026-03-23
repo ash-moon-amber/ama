@@ -48,7 +48,7 @@ jobs:
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-      # 2. mkdocs.yml を生成（pluginsを統合し、site_urlを定義）
+      # 2. mkdocs.yml を生成（sitemapプラグインの指定を削除し、標準機能で生成させる）
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
@@ -87,16 +87,12 @@ jobs:
             - Blog: index.md
             - Profile: profile.md
 
-          # pluginsは1箇所にまとめます
           plugins:
             - blog:
                 blog_dir: .
                 post_dir: posts
                 draft_if_future: false
             - search
-            - sitemap:
-                changefreq: daily
-                priority: 0.5
 
           docs_dir: src
           site_dir: site
