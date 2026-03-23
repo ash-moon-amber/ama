@@ -48,21 +48,33 @@ jobs:
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-      # 2. mkdocs.yml を生成（site_url と sitemap プラグインの設定を追加）
+      # 2. mkdocs.yml を生成（pluginsを統合し、site_urlを定義）
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
           site_name: 灰月琥珀 - Ash Moon Amber
-          # 【重要】Search Console用に絶対URLを定義
           site_url: https://ash-moon-amber.github.io/ama/
-          
           repo_name: GitHub
           repo_url: https://github.com/ash-moon-amber/ama
           
           theme:
             name: material
             language: ja
-            # ... (中略: palette 設定などはそのまま)
+            palette:
+              - media: "(prefers-color-scheme: dark)"
+                scheme: slate
+                primary: black
+                accent: indigo
+                toggle:
+                  icon: material/brightness-4
+                  name: ダークモード
+              - media: "(prefers-color-scheme: light)"
+                scheme: default
+                primary: indigo
+                accent: indigo
+                toggle:
+                  icon: material/brightness-6
+                  name: ライトモード
             features:
               - navigation.tabs
               - navigation.sections
@@ -75,21 +87,22 @@ jobs:
             - Blog: index.md
             - Profile: profile.md
 
+          # pluginsは1箇所にまとめます
           plugins:
             - blog:
                 blog_dir: .
                 post_dir: posts
                 draft_if_future: false
-            # sitemap生成を明示 ./sitemap.xml
+            - search
             - sitemap:
                 changefreq: daily
                 priority: 0.5
-                
+
           docs_dir: src
           site_dir: site
           EOF
 
-          # 3. ビルド実行
+      # 3. ビルド実行
       - name: Build MkDocs
         run: mkdocs build
 
