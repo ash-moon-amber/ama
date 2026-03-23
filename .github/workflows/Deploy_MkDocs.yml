@@ -38,6 +38,7 @@ jobs:
         run: |
           pip install mkdocs-material
           pip install "mkdocs-material[blog]"
+          pip install mkdocs-rss-plugin # RSS
 
       # 1. srcディレクトリの存在保証（空だとビルドエラーになるため）
       - name: Ensure src directory exists
@@ -48,12 +49,13 @@ jobs:
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-      # 2. mkdocs.yml を生成（トップページのサイドバーを最適化する構成）
+      # 2. mkdocs.yml を生成（RSS配信設定を追加）
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
           site_name: 灰月琥珀 - Ash Moon Amber
           site_url: https://ash-moon-amber.github.io/ama/
+          site_description: 琥珀の技術と日常の記録 # ★RSS仕様として必須のパラメータです
           repo_name: GitHub
           repo_url: https://github.com/ash-moon-amber/ama
           
@@ -77,14 +79,13 @@ jobs:
                   name: ライトモード
             features:
               - navigation.tabs
-              - navigation.indexes   # ★トップページの冗長な表示を消す必須機能
+              - navigation.indexes
               - navigation.sections
               - toc.integrate
 
           markdown_extensions:
             - nl2br
 
-          # ★ここが重要：index.md には「名前（キー）」をつけずに置きます
           nav:
             - Blog:
                 - index.md
@@ -101,6 +102,10 @@ jobs:
             - search
             - tags:
                 tags_file: tags.md
+            - rss:
+                match_path: posts/.* # ★Profile等を除外して「ブログ記事」のみを配信するフィルタ
+                date_from_meta:
+                  as_creation: date
 
           docs_dir: src
           site_dir: site
