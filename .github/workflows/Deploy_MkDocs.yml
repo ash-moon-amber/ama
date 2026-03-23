@@ -91,6 +91,9 @@ jobs:
                 - index.md
                 - Tags: tags.md
             - Profile: profile.md
+          
+          extra_css:
+            - stylesheets/extra.css
 
           plugins:
             - blog:
