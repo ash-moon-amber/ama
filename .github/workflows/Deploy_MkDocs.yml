@@ -56,14 +56,14 @@ jobs:
               font-weight: bold !important;
           }
 
-          /* ダークモード (slate): #e0e0e0 (RGB: 224, 224, 224) */
+          /* ダークモード (slate) */
           [data-md-color-scheme="slate"] {
               --md-typeset-a-color: #e0e0e0 !important;
               --md-accent-fg-color: #e0e0e0 !important;
               --md-accent-fg-color--transparent: rgba(224, 224, 224, 0.1) !important;
           }
 
-          /* ライトモード (default): #212121 (RGB: 33, 33, 33) */
+          /* ライトモード (default) */
           [data-md-color-scheme="default"] {
               --md-typeset-a-color: #212121 !important;
               --md-accent-fg-color: #212121 !important;
@@ -71,10 +71,9 @@ jobs:
           }
           EOF
 
-      # 2. mkdocs.yml を生成（タイムスタンプを自動付与）
+      # 2. mkdocs.yml を生成（ハイライト設定を追加）
       - name: Create mkdocs.yml
         run: |
-          # 現在時刻を YYYYMMDDHHMMSS 形式で取得
           TS=$(date +'%Y%m%d%H%M%S')
           
           cat <<'EOF' > mkdocs.yml
@@ -107,9 +106,21 @@ jobs:
               - navigation.indexes
               - navigation.sections
               - toc.integrate
+              - content.code.copy # ★コピーボタンを追加
 
           markdown_extensions:
             - nl2br
+            - pymdownx.highlight: # ★ハイライト設定ここから
+                anchor_linenums: true
+                line_spans: __span
+                pygments_lang_class: true
+            - pymdownx.inlinehilite
+            - pymdownx.snippets
+            - pymdownx.superfences:
+                custom_fences:
+                  - name: mermaid
+                    class: mermaid
+                    format: !!python/name:pymdownx.superfences.fence_code_format # ★ここまで追加
 
           nav:
             - Blog:
@@ -139,7 +150,6 @@ jobs:
           site_dir: site
           EOF
 
-          # 置換を実行してタイムスタンプを埋め込む
           sed -i "s/TIMESTAMP_PLACEHOLDER/$TS/g" mkdocs.yml
 
       # 3. ビルド実行
