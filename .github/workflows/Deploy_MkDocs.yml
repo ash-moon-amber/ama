@@ -85,9 +85,10 @@ jobs:
 
           # navに Tags を追加します
           nav:
-            - Blog: index.md
-            - Tags: tags.md
-            - Profile: profile.md
+            - Blog:
+                - ホーム: index.md
+                - タグ: tags.md
+                - Profile: profile.md
 
           plugins:
             - blog:
