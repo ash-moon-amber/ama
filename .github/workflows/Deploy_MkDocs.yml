@@ -95,6 +95,7 @@ jobs:
                 archive_url_date_format: yyyy/MM
                 archive_date_format: yyyy年MM月
             - search
+            - tags
 
           docs_dir: src
           site_dir: site
