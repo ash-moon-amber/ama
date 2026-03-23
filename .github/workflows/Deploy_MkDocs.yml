@@ -137,9 +137,13 @@ jobs:
           repo_name: GitHub
           repo_url: https://github.com/ash-moon-amber/ama
           
+          use_directory_urls: false
+
           theme:
             name: material
             custom_dir: overrides
+            # ★ theme の直下（インデントを合わせる）に配置
+            not_found_template: 404.html
             language: ja
             logo: assets/logo.png
             favicon: assets/logo.png
