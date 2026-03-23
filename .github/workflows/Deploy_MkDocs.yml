@@ -63,8 +63,13 @@ jobs:
               --md-accent-fg-color--transparent: rgba(224, 224, 224, 0.1) !important;
           }
 
-          /* ライトモード (default) */
+          /* ライトモード (default): 背景色を和らげる */
           [data-md-color-scheme="default"] {
+              /* 背景色を「真っ白」から「ごく薄いグレー（#f5f5f5）」に変更 */
+              --md-default-bg-color: #f5f5f5 !important;
+              /* コンテンツ領域の背景色も合わせる */
+              --md-default-bg-color--light: #f5f5f5 !important;
+              
               --md-typeset-a-color: #212121 !important;
               --md-accent-fg-color: #212121 !important;
               --md-accent-fg-color--transparent: rgba(33, 33, 33, 0.1) !important;
