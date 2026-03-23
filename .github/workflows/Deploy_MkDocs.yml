@@ -115,7 +115,7 @@ jobs:
             - Profile: profile.md
           
           extra_css:
-            - stylesheets/extra.css?v=20260323 # ★キャッシュバスター：ブラウザのキャッシュを強制的に破棄させます
+            - stylesheets/extra.css?v=20260323_1833 # ★キャッシュバスター：ブラウザのキャッシュを強制的に破棄させます
 
           plugins:
             - blog:
