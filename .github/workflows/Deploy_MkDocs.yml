@@ -77,6 +77,7 @@ jobs:
                   name: ライトモード
             features:
               - navigation.tabs
+              - navigation.indexes
               - navigation.sections
               - toc.integrate
 
@@ -85,8 +86,9 @@ jobs:
 
           # navに Tags を追加します
           nav:
-            - ホーム: index.md
-            - タグ: tags.md
+            - Blog:
+                - index.md   # キー（ホーム:）を書かずに直接指定
+                - tags.md    # 同上
             - Profile: profile.md
 
           plugins:
