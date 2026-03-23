@@ -97,7 +97,7 @@ jobs:
                   name: ダークモード
               - media: "(prefers-color-scheme: light)"
                 scheme: default
-                primary: grey
+                primary: black
                 accent: indigo
                 toggle:
                   icon: material/brightness-6
