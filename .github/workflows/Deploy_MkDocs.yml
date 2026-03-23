@@ -48,7 +48,7 @@ jobs:
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-      # 2. mkdocs.yml を生成（アーカイブを月単位に分割する設定を追加）
+      # 2. mkdocs.yml を生成
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
@@ -83,8 +83,10 @@ jobs:
           markdown_extensions:
             - nl2br
 
+          # navに Tags を追加します
           nav:
             - Blog: index.md
+            - Tags: tags.md
             - Profile: profile.md
 
           plugins:
@@ -95,7 +97,9 @@ jobs:
                 archive_url_date_format: yyyy/MM
                 archive_date_format: yyyy年MM月
             - search
-            - tags
+            # tagsプラグインに集約先ファイルを指定します
+            - tags:
+                tags_file: tags.md
 
           docs_dir: src
           site_dir: site
