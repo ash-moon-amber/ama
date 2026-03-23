@@ -100,7 +100,7 @@ jobs:
                 primary: black
                 accent: indigo
                 toggle:
-                  icon: material/brightness-6
+                  icon: material/brightness-5
                   name: ライトモード
             features:
               - navigation.tabs
