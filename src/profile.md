@@ -1,5 +1,8 @@
 # Haitsuki Kohaku - Profile
 
+解離性障害で療養中です。
+（2026/3/13 診断書発行）
+
 ## Novels
   - [小説家になろう［ 灰月 琥珀 ］](https://mypage.syosetu.com/2164035/)
   - [カクヨム［ 灰月 琥珀 ］](https://kakuyomu.jp/users/ash_moon_amber)
