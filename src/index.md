@@ -8,3 +8,5 @@
 <p align="center" style="background: transparent !important; border: none !important; box-shadow: none !important;">
   <img src="assets/logo.png" width="128" height="128" alt="Logo">
 </p>
+
+<hr style="border: none; border-top: 1px solid #e0e0e0; margin: 2em 0;">
