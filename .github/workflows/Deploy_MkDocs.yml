@@ -48,7 +48,7 @@ jobs:
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
 
-      # 2. mkdocs.yml を生成（sitemapプラグインの指定を削除し、標準機能で生成させる）
+      # 2. mkdocs.yml を生成（アーカイブを月単位に分割する設定を追加）
       - name: Create mkdocs.yml
         run: |
           cat <<'EOF' > mkdocs.yml
@@ -92,6 +92,8 @@ jobs:
                 blog_dir: .
                 post_dir: posts
                 draft_if_future: false
+                archive_url_date_format: yyyy/MM
+                archive_date_format: yyyy年MM月
             - search
 
           docs_dir: src
