@@ -91,6 +91,8 @@ jobs:
           theme:
             name: material
             language: ja
+            logo: assets/logo.png
+            favicon: assets/logo.png
             palette:
               - media: "(prefers-color-scheme: dark)"
                 scheme: slate
