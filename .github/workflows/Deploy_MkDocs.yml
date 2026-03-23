@@ -56,24 +56,40 @@ jobs:
           .md-nav__link, 
           .md-post__title a,
           .md-typeset h1,
-          .md-typeset h2 {
+          .md-typeset h2,
+          .md-typeset h3,
+          .md-typeset h4,
+          .md-typeset h5 {
               font-weight: bold !important;
           }
 
           /* 2. ダークモード (slate) の配色強制 */
           body[data-md-color-scheme="slate"] {
-              .md-typeset h1, md-typeset h2, md-typeset h3, md-typeset h4, md-typeset h5: #e0e0e0 !important;
               --md-typeset-a-color: #e0e0e0 !important;
               --md-accent-fg-color: #e0e0e0 !important;
+          }
+          /* セレクタを外に出して記述します */
+          body[data-md-color-scheme="slate"] .md-typeset h1,
+          body[data-md-color-scheme="slate"] .md-typeset h2,
+          body[data-md-color-scheme="slate"] .md-typeset h3,
+          body[data-md-color-scheme="slate"] .md-typeset h4,
+          body[data-md-color-scheme="slate"] .md-typeset h5 {
+              color: #e0e0e0 !important;
           }
 
           /* 3. ライトモード (default) の配色強制 */
           body[data-md-color-scheme="default"] {
-              .md-typeset h1, md-typeset h2, md-typeset h3, md-typeset h4, md-typeset h5: #f5f5f5 !important;
               --md-default-bg-color: #f5f5f5 !important;
               --md-default-bg-color--light: #f5f5f5 !important;
               --md-typeset-a-color: #212121 !important;
               --md-accent-fg-color: #212121 !important;
+          }
+          body[data-md-color-scheme="default"] .md-typeset h1,
+          body[data-md-color-scheme="default"] .md-typeset h2,
+          body[data-md-color-scheme="default"] .md-typeset h3,
+          body[data-md-color-scheme="default"] .md-typeset h4,
+          body[data-md-color-scheme="default"] .md-typeset h5 {
+              color: #212121 !important;
           }
 
           /* 4. 詳細ページ内のリンク色を再適用 */
