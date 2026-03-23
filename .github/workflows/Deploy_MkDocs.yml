@@ -71,9 +71,12 @@ jobs:
           }
           EOF
 
-      # 2. mkdocs.yml を生成（RSS配信設定を追加）
+      # 2. mkdocs.yml を生成（タイムスタンプを自動付与）
       - name: Create mkdocs.yml
         run: |
+          # 現在時刻を YYYYMMDDHHMMSS 形式で取得
+          TS=$(date +'%Y%m%d%H%M%S')
+          
           cat <<'EOF' > mkdocs.yml
           site_name: 灰月琥珀 - Ash Moon Amber
           site_url: https://ash-moon-amber.github.io/ama/
@@ -88,14 +91,14 @@ jobs:
               - media: "(prefers-color-scheme: dark)"
                 scheme: slate
                 primary: black
-                accent: indigo # ★システムのエラー回避用ダミー値。実際の表示はCSSで完全上書きされます。
+                accent: indigo
                 toggle:
                   icon: material/brightness-4
                   name: ダークモード
               - media: "(prefers-color-scheme: light)"
                 scheme: default
                 primary: grey
-                accent: indigo # ★同上
+                accent: indigo
                 toggle:
                   icon: material/brightness-6
                   name: ライトモード
@@ -115,7 +118,7 @@ jobs:
             - Profile: profile.md
           
           extra_css:
-            - stylesheets/extra.css?v=20260323_1833 # ★キャッシュバスター：ブラウザのキャッシュを強制的に破棄させます
+            - stylesheets/extra.css?v=TIMESTAMP_PLACEHOLDER
 
           plugins:
             - blog:
@@ -135,6 +138,9 @@ jobs:
           docs_dir: src
           site_dir: site
           EOF
+
+          # 置換を実行してタイムスタンプを埋め込む
+          sed -i "s/TIMESTAMP_PLACEHOLDER/$TS/g" mkdocs.yml
 
       # 3. ビルド実行
       - name: Build MkDocs
