@@ -40,14 +40,35 @@ jobs:
           pip install "mkdocs-material[blog]"
           pip install mkdocs-rss-plugin # RSS
 
-      # 1. srcディレクトリの存在保証（空だとビルドエラーになるため）
-      - name: Ensure src directory exists
+      # 1. srcディレクトリとCSSの存在保証（強制生成してパスの不整合を排除）
+      - name: Ensure src directory and generate CSS
         run: |
-          mkdir -p src
+          mkdir -p src/stylesheets
           if [ ! -f "src/index.md" ]; then
             echo "# ホーム" > src/index.md
             echo "GitHub Pages へようこそ。" >> src/index.md
           fi
+          
+          # extra.css をランナー上で物理的に生成
+          cat <<'EOF' > src/stylesheets/extra.css
+          /* ダークモード (slate) の Indigo 呪縛を解く */
+          [data-md-color-scheme="slate"] {
+              --md-typeset-a-color: #9e9e9e !important;
+              --md-accent-fg-color: #9e9e9e !important;
+          }
+
+          /* ライトモード (default) */
+          [data-md-color-scheme="default"] {
+              --md-typeset-a-color: #757575 !important;
+              --md-accent-fg-color: #757575 !important;
+          }
+
+          /* 全体的なリンクホバー時の色も固定 */
+          :root {
+              --md-accent-fg-color: #9e9e9e !important;
+              --md-accent-fg-color--transparent: rgba(158, 158, 158, 0.1) !important;
+          }
+          EOF
 
       # 2. mkdocs.yml を生成（RSS配信設定を追加）
       - name: Create mkdocs.yml
@@ -94,6 +115,7 @@ jobs:
           
           extra_css:
             - stylesheets/extra.css
+
 
           plugins:
             - blog:
