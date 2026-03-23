@@ -68,7 +68,6 @@ jobs:
               --md-typeset-a-color: #e0e0e0 !important;
               --md-accent-fg-color: #e0e0e0 !important;
           }
-          /* セレクタを外に出して記述します */
           body[data-md-color-scheme="slate"] .md-typeset h1,
           body[data-md-color-scheme="slate"] .md-typeset h2,
           body[data-md-color-scheme="slate"] .md-typeset h3,
@@ -98,7 +97,22 @@ jobs:
           }
           EOF
 
-      # 2. mkdocs.yml を生成
+      # 2. OGP用のカスタムテンプレートを生成（絶対パスを強制注入）
+      - name: Create overrides for OGP
+        run: |
+          mkdir -p overrides
+          cat <<'EOF' > overrides/main.html
+          {% extends "base.html" %}
+          
+          {% block extrahead %}
+            {{ super() }}
+            <meta property="og:image" content="{{ config.site_url }}assets/og-image.png" />
+            <meta name="twitter:image" content="{{ config.site_url }}assets/og-image.png" />
+            <meta name="twitter:card" content="summary_large_image" />
+          {% endblock %}
+          EOF
+
+      # 3. mkdocs.yml を生成
       - name: Create mkdocs.yml
         run: |
           TS=$(date +'%Y%m%d%H%M%S')
@@ -112,6 +126,7 @@ jobs:
           
           theme:
             name: material
+            custom_dir: overrides
             language: ja
             logo: assets/logo.png
             favicon: assets/logo.png
@@ -137,9 +152,6 @@ jobs:
               - toc.integrate
               - content.code.copy
 
-          extra:
-            og_image: assets/og-image.png
-
           markdown_extensions:
             - nl2br
             - pymdownx.highlight:
@@ -160,7 +172,6 @@ jobs:
                 - Tags: tags.md
             - Profile: profile.md
           
-          # ★ パスを site_url からの相対（/ama/抜き）に戻し、MkDocsのビルドに任せる
           extra_css:
             - stylesheets/extra.css?v=TIMESTAMP_PLACEHOLDER
 
@@ -174,10 +185,6 @@ jobs:
                 tags_file: tags.md
             - rss:
                 match_path: posts/.*
-            - social:
-                cards: true
-                cards_layout_options:
-                  background_color: "#212121"
 
           docs_dir: src
           site_dir: site
@@ -185,29 +192,25 @@ jobs:
 
           sed -i "s/TIMESTAMP_PLACEHOLDER/$TS/g" mkdocs.yml
 
-      # 3. ビルド実行
+      # 4. ビルド実行
       - name: Build MkDocs
         run: mkdocs build
 
-      # 4. 公開ディレクトリ(public)の整理
+      # 5. 公開ディレクトリ(public)の整理
       - name: Prepare Public Directory
         run: |
-          # 完全にクリーンな状態から作成
           rm -rf public
           mkdir -p public
           
-          # 1. ビルドされたsiteの中身をすべてコピー
           if [ -d "site" ]; then
             cp -r site/* public/
           fi
           
-          # 2. 【重要】stylesheets を public 直下に物理コピー (404対策)
           if [ -d "src/stylesheets" ]; then
             mkdir -p public/stylesheets
             cp -r src/stylesheets/* public/stylesheets/
           fi
           
-          # 3. 画像類の物理コピー
           if [ -d "src/img" ]; then
             mkdir -p public/img
             cp -r src/img/* public/img/
