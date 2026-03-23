@@ -66,14 +66,14 @@ jobs:
               - media: "(prefers-color-scheme: dark)"
                 scheme: slate
                 primary: black
-                accent: indigo
+                accent: grey
                 toggle:
                   icon: material/brightness-4
                   name: ダークモード
               - media: "(prefers-color-scheme: light)"
                 scheme: default
-                primary: indigo
-                accent: indigo
+                primary: black
+                accent: grey
                 toggle:
                   icon: material/brightness-6
                   name: ライトモード
