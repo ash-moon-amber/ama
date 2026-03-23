@@ -129,7 +129,7 @@ jobs:
             - Profile: profile.md
           
           extra_css:
-            - stylesheets/extra.css?v=TIMESTAMP_PLACEHOLDER
+            - /ama/stylesheets/extra.css?v=TIMESTAMP_PLACEHOLDER
 
           plugins:
             - blog:
