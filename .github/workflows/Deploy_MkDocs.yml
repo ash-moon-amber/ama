@@ -46,7 +46,7 @@ jobs:
           mkdir -p src/stylesheets
           if [ ! -f "src/index.md" ]; then
             echo "# ホーム" > src/index.md
-            echo "GitHub Pages へようこそ。" >> src/index.md
+            echo "GitHub Pages" >> src/index.md
           fi
           
           # extra.css をランナー上で物理的に生成
