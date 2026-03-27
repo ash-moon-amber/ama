@@ -98,6 +98,14 @@ jobs:
           .md-content__inner .md-typeset a {
               color: var(--md-typeset-a-color) !important;
           }
+
+          /* サムネイル表示 */
+          .md-typeset img {
+            max-height: 400px;
+            width: auto;
+            border-radius: 4px;
+          }
+
           EOF
 
       # 2. カスタムテンプレートを生成（<base>タグによる絶対パス強制）
