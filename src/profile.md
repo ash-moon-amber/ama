@@ -45,6 +45,7 @@
 ## Social Account
 なりすましの偽物アカウント防止のため作っています。
 基本的にSNS交流する気がないのでアカウント作って放置しています。
+
   - [ZENN ［ 灰月 琥珀 ］](https://zenn.dev/ash_moon_amber)
   - [X ［ 灰月 琥珀 ］](https://x.com/ash_moon_amber)
   - [note ［ 灰月 琥珀 ］](https://note.com/ash_moon_amber) NoteアカウントはTails目的で保持しています。
