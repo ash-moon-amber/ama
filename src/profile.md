@@ -1,12 +1,10 @@
 # Haitsuki Kohaku - Profile
 
-## Novels
-  - [小説家になろう［ 灰月 琥珀 ］](https://mypage.syosetu.com/2164035/)
-  - [カクヨム［ 灰月 琥珀 ］](https://kakuyomu.jp/users/ash_moon_amber)
-  - [アルファポリス［ 灰月 琥珀 ］](https://www.alphapolis.co.jp/author/detail/280742528)
-  - [ツギクル［ 灰月 琥珀 ］](https://www.tugikuru.jp/author?id=56736)
-  - [ノベマ！［ 灰月 琥珀 ］](https://novema.jp/member/n1396292)
-  - [Tails［ 灰月 琥珀 ］](https://tales.note.com/ash_moon_amber)
+## Creative Work
+### Indie Game Project
+- **Title:** J·N·W (救世 - NEW WORLD / JUDGEMENT SAVIOR - NEW WORLD)
+- **Genre:** Open-World 3D ARPG
+- **Official Site:** https://ash-moon-amber.github.io/jiushi-new-world/
 
 
 ## Brain
@@ -47,6 +45,15 @@
   - [ZENN ［ 灰月 琥珀 ］](https://zenn.dev/ash_moon_amber)
   - [X ［ 灰月 琥珀 ］](https://x.com/ash_moon_amber)
   - [note ［ 灰月 琥珀 ］](https://note.com/ash_moon_amber) NoteアカウントはTails目的で保持しています。
+
+## Novels
+  - [小説家になろう［ 灰月 琥珀 ］](https://mypage.syosetu.com/2164035/)
+  - [カクヨム［ 灰月 琥珀 ］](https://kakuyomu.jp/users/ash_moon_amber)
+  - [アルファポリス［ 灰月 琥珀 ］](https://www.alphapolis.co.jp/author/detail/280742528)
+  - [ツギクル［ 灰月 琥珀 ］](https://www.tugikuru.jp/author?id=56736)
+  - [ノベマ！［ 灰月 琥珀 ］](https://novema.jp/member/n1396292)
+  - [Tails［ 灰月 琥珀 ］](https://tales.note.com/ash_moon_amber)
+
 
 ---
 
