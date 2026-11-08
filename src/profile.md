@@ -5,7 +5,7 @@
 - **Title:** J·N·W (救世 - NEW WORLD / JUDGEMENT SAVIOR - NEW WORLD)
 - **Genre:** Open-World 3D ARPG
 - **Official Site:** [https://ash-moon-amber.github.io/jiushi-new-world/](https://ash-moon-amber.github.io/jiushi-new-world/)
-- **Philosophy[JA]:** [https://ash-moon-amber.github.io/ama/2026/11/08/2026-11-08-23%3A05.html](https://ash-moon-amber.github.io/ama/2026/11/08/2026-11-08-23%3A05.html)
+- **Philosophy[JA]:** [https://ash-moon-amber.github.io/ama/2026/11/08/2026-11-08-2305.html](https://ash-moon-amber.github.io/ama/2026/11/08/2026-11-08-2305.html)
 
 
 ## Brain
